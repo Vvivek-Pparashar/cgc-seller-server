@@ -15,12 +15,12 @@ const getProducts = asyncHandler(async (req, res) => {
 
 const getProduct = asyncHandler(async (req, res) => {
   const { id: taskId } = req.params;
-  const Product = await Product.findOne({ _id: taskId });
+  const product = await Product.findOne({ _id: taskId });
 
-  if (!Product) {
+  if (!product) {
     return res.status(404).json({ msg: "No Product for this id" });
   }
-  res.status(200).json({ Product });
+  res.status(200).json({ product });
 });
 
 //@desc     post a Product
@@ -43,9 +43,9 @@ const postProduct = asyncHandler(async (req, res) => {
 //@access   private
 
 const putProduct = asyncHandler(async (req, res) => {
-  const Product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
-  if (!Product) {
+  if (!product) {
     res.status(400);
     throw new Error("Product not found");
   }
@@ -64,15 +64,17 @@ const putProduct = asyncHandler(async (req, res) => {
 //@route    PUT /api/Products/:id
 //@access   private
 const deleteProduct = asyncHandler(async (req, res) => {
-  const Product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
-  if (!Product) {
+  if (!product) {
     console.log("vivek");
     res.status(404);
     throw new Error("Product not found");
   }
 
-  await Product.findOneAndDelete({ _id: Product });
+  console.log(product)
+
+  await Product.findOneAndDelete({ _id: req.params.id });
   res.status(200).json({ id: req.params.id });
 });
 

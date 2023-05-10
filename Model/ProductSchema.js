@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
 
   img: {
     type: String,
-    required: [true, "provide a img"],
+    // required: [true, "provide a img"],
   },
 
   phoneNo: {
@@ -22,22 +22,18 @@ const productSchema = mongoose.Schema({
   },
 
   price: {
-    type: String,
+    type: Number,
     required: [true, "Provide a valid price"],
   },
 
-  productType: {
+  name: {
     type: String,
-    required: [true, "provide a productType"],
+    required: [true, "Provide a valid name"],
   },
 
-  description: {
+  category: {
     type: String,
-  },
-
-  password: {
-    type: String,
-    required: [true, "Provide a Valid Password"],
+    required: [true, "provide a Category"],
   },
 });
 
